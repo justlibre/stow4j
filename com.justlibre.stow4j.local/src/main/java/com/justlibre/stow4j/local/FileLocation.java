@@ -3,6 +3,7 @@ package com.justlibre.stow4j.local;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 import com.justlibre.stow4j.Container;
+import com.justlibre.stow4j.Item;
 import com.justlibre.stow4j.Location;
 import com.justlibre.stow4j.NotFoundException;
 import com.justlibre.stow4j.Pair;
@@ -96,5 +98,11 @@ class FileLocation implements Location {
 		}
 		
 		return cont;
+	}
+
+	@Override
+	public Item itemByURL(URL url) throws StowException {
+		FileItem fi = new FileItem(url.getPath());
+		return fi;
 	}
 }

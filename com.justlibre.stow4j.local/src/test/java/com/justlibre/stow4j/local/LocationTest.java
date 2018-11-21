@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.nio.file.Paths;
 import java.util.List;
 import java.util.Properties;
 
@@ -13,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.justlibre.stow4j.Container;
+import com.justlibre.stow4j.Item;
 import com.justlibre.stow4j.Location;
 import com.justlibre.stow4j.Pair;
 import com.justlibre.stow4j.Stow;
@@ -155,6 +155,23 @@ public class LocationTest {
 		assertEquals("reminder", 5, ret.left().size());
 		assertTrue("no more", Stow.isCursorEnd(ret.right()));
 		cursor = ret.right();
+	}
+	
+	@Test
+	public void testAsUrl() throws Exception {
+		Properties conf = new LocalBuilder(base).build();
+
+		Location location = Stow.dial("local", conf);
+		Container c = location.getContainer("dir3");
+		Pair<List<Item>, String> ret = c.items("deepitem", "", 1);
+		Item itOrig = ret.left().get(0);
+		
+		Item itFound = location.itemByURL(itOrig.url());
+		
+		assertTrue(itFound != null);
+		assertEquals(itOrig.name(), itFound.name());
+		assertEquals(itOrig.id(), itFound.id());
+
 	}
 	
 	private boolean isDir(String path) {
