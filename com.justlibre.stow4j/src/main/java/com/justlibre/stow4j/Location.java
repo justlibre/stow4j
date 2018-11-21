@@ -38,7 +38,7 @@ public interface Location extends Closeable {
 	boolean removeContainer(String name) throws StowException;
 	
 	/**
-	 *  Containers gets a page of containers
+	 * getContainers retrieves page of containers
 	 * with the specified prefix from this Location.
 	 * The specified cursor is a pointer to the start of
 	 * the containers to get. It it obtained from a previous
@@ -54,11 +54,11 @@ public interface Location extends Closeable {
 	 * @return pair {containers, new cursor}
 	 * @throws StowException if the cursor is not ok
 	 */
-	Pair<List<Container>, String> containers(String prefix, String cursor, int count) throws StowException;
+	Pair<List<Container>, String> getContainers(String prefix, String cursor, int count) throws StowException;
 	
 	/**
-	 * ItemByURL gets an Item at this location with the
+	 * getItemByURL gets an Item at this location with the
 	 * specified URL.
 	 */ 
-	Item itemByURL(URL url) throws StowException;
+	Item getItemByURL(URL url) throws StowException;
 }

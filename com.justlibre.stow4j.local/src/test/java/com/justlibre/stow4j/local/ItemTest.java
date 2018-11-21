@@ -40,11 +40,11 @@ public class ItemTest {
 		Location location = Stow.dial("local", conf);
 		Container c = location.getContainer("dir3");
 		
-		Pair<List<Item>, String> ret = c.items("deepitem1", Stow.StartCursor, 1);
+		Pair<List<Item>, String> ret = c.getItems("deepitem1", Stow.StartCursor, 1);
 		Item it = ret.left().get(0);
 		
 		URL url = new URL("file", "", Paths.get(base, "dir3", "deep", "deepitem1").toFile().toString());
-		assertEquals(url, it.url());
+		assertEquals(url, it.getUrl());
 	}
 	
 	@Test
@@ -54,7 +54,7 @@ public class ItemTest {
 		Location location = Stow.dial("local", conf);
 		Container c = location.getContainer("dir3");
 		
-		Pair<List<Item>, String> ret = c.items("deepitem1", Stow.StartCursor, 1);
+		Pair<List<Item>, String> ret = c.getItems("deepitem1", Stow.StartCursor, 1);
 		Item it = ret.left().get(0);
 		
 		Reader r = it.open();

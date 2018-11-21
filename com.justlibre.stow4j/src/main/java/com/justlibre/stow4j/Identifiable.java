@@ -5,5 +5,5 @@ public interface Identifiable {
 	 * 
 	 * @return a unique string describing this entity.
 	 */
-	String id();
+	String getId();
 }

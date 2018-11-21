@@ -22,7 +22,7 @@ public class Paging {
 		int i = 0;
 		int pos = 0;
 		for (E elem : all) {
-			if (!copy && elem.id().equals(cursor)) {
+			if (!copy && elem.getId().equals(cursor)) {
 				copy = true;
 			}
 			if (copy) {
@@ -38,7 +38,7 @@ public class Paging {
 		String newCursor = Stow.StartCursor;
 		if (i >= count) {
 			if (pos < all.size()) {
-				newCursor = all.get(pos).id();
+				newCursor = all.get(pos).getId();
 			} else {
 				//finished
 			}
