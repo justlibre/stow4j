@@ -51,7 +51,7 @@ class FileLocation implements Location {
 	}
 	
 	@Override
-	public Pair<List<Container>, String> containers(String prefix, String cursor, int count) throws StowException {
+	public Pair<List<Container>, String> getContainers(String prefix, String cursor, int count) throws StowException {
 		File dir = new File(path);
 		final String okp = prefix == null?"":prefix;
 		String[] foundFiles = dir.list(new FilenameFilter() {
@@ -101,7 +101,7 @@ class FileLocation implements Location {
 	}
 
 	@Override
-	public Item itemByURL(URL url) throws StowException {
+	public Item getItemByURL(URL url) throws StowException {
 		FileItem fi = new FileItem(url.getPath());
 		return fi;
 	}

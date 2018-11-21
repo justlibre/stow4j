@@ -24,17 +24,17 @@ public class FileItem implements Item {
 	}
 
 	@Override
-	public String id() {
+	public String getId() {
 		return path;
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return (new File(path)).getName();
 	}
 	
 	@Override
-	public URL url() {
+	public URL getUrl() {
 		URL u = null;
 		try {
 			u = new URL("file", "", path);
@@ -46,7 +46,7 @@ public class FileItem implements Item {
 	}
 
 	@Override
-	public long size() throws StowException {
+	public long getSize() throws StowException {
 		return (new File(path)).length();
 	}
 

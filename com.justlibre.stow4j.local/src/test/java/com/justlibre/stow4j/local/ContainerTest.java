@@ -41,8 +41,8 @@ public class ContainerTest {
 		Container c = location.getContainer("a1");
 
 		Item it = c.put("deep/deeper/item", new StringReader("item"), "item".getBytes().length, null);
-		assertEquals("item", it.name());
-		assertEquals(Paths.get(base, "a1", "deep", "deeper", "item").toAbsolutePath().toString(), it.id());
+		assertEquals("item", it.getName());
+		assertEquals(Paths.get(base, "a1", "deep", "deeper", "item").toAbsolutePath().toString(), it.getId());
 	}
 	
 	@Test
@@ -53,10 +53,10 @@ public class ContainerTest {
 		Container c = location.getContainer("a1");
 
 		Item it = c.put("item", new StringReader("item"), "item".getBytes().length, null);
-		Item it2 = c.item(it.id());
+		Item it2 = c.getItem(it.getId());
 		
-		assertEquals(it.id(), it2.id());
-		assertEquals(it.name(), it2.name());
+		assertEquals(it.getId(), it2.getId());
+		assertEquals(it.getName(), it2.getName());
 	}
 	@Test
 	public void testPaging() throws Exception {
@@ -75,19 +75,19 @@ public class ContainerTest {
 		String cursor = Stow.StartCursor;
 		
 		// get first page
-		ret = c.items("item-", cursor, 10);
+		ret = c.getItems("item-", cursor, 10);
 		assertEquals("full page (10)", 10, ret.left().size());
 		assertEquals("cursor", "item-10", (new File(ret.right())).getName());
 		cursor = ret.right();
 		
 		// get second page
-		ret = c.items("item-", cursor, 10);
+		ret = c.getItems("item-", cursor, 10);
 		assertEquals("full page (10)", 10, ret.left().size());
 		assertEquals("cursor", "item-20", (new File(ret.right())).getName());
 		cursor = ret.right();
 				
 		// get last page
-		ret = c.items("item-", cursor, 10);
+		ret = c.getItems("item-", cursor, 10);
 		assertEquals("reminder", 5, ret.left().size());
 		assertTrue("no more", Stow.isCursorEnd(ret.right()));
 		cursor = ret.right();

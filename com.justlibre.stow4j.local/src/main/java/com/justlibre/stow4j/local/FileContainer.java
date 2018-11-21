@@ -29,12 +29,12 @@ class FileContainer implements Container {
 	}
 
 	@Override
-	public String id() {
+	public String getId() {
 		return path;
 	}
 
 	@Override
-	public String name() {
+	public String getName() {
 		return name;
 	}
 
@@ -71,7 +71,7 @@ class FileContainer implements Container {
 	}
 
 	@Override
-	public Pair<List<Item>, String> items(String prefix, String cursor, int count) throws StowException {
+	public Pair<List<Item>, String> getItems(String prefix, String cursor, int count) throws StowException {
 		IOFileFilter fileFilter = prefix.isEmpty()?TrueFileFilter.INSTANCE:FileFilterUtils.prefixFileFilter(prefix);
 		List<File> files = (List<File>) FileUtils.listFiles(new File(path), fileFilter, TrueFileFilter.INSTANCE);
 		
@@ -83,7 +83,7 @@ class FileContainer implements Container {
 	}
 	
 	@Override
-	public Item item(String id) throws StowException {
+	public Item getItem(String id) throws StowException {
 		File f = new File(id);
 		if (f.isDirectory()) {
 			throw new StowException("unexpected directory");

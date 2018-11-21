@@ -7,20 +7,24 @@ import java.net.URL;
  * represents a storage item
  */
 public interface Item extends Identifiable {
-	String name();
+	/**
+	 * item's name
+	 * @return
+	 */
+	String getName();
 
 	/**
 	 * get a URL for this item. it is dependent
 	 * on the back-end
 	 * local: file:///path/to/something
 	 */
-	URL url();
+	URL getUrl();
 
 	/**
 	 * @return the size of the Item's contents in bytes.
 	 * @throws StowException
 	 */
-	long size() throws StowException;
+	long getSize() throws StowException;
 	
 	/**
 	 * opens the item for reading. The caller must close
