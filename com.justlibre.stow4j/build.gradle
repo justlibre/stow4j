@@ -1,0 +1,18 @@
+/*apply plugin: 'java'
+apply plugin: 'maven'
+
+version = parent.VERSION
+*/
+project.ext {
+	artifactId = 'com.justlibre.stow4j'
+}
+
+dependencies {
+   compile (
+      LIBS.SLF4J_API
+   )
+   
+   testCompile (
+      LIBS.JUNIT
+   )
+}

@@ -1,0 +1,6 @@
+include 'com.justlibre.stow4j'
+include 'com.justlibre.stow4j.local'
+
+rootProject.children.each { project ->
+   project.projectDir = new File(settingsDir, "../$project.name")
+}
