@@ -1,0 +1,49 @@
+
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java-library'
+    id 'eclipse'
+}
+
+project.ext {
+   VERSION = '0.0.1-SNAPSHOT'
+
+   LIBS = new HashMap()
+}
+
+dependencies {
+
+}
+
+repositories {
+    jcenter()
+}
+
+LIBS << [
+   SLF4J_API: [group:'org.slf4j', name: 'slf4j-api', version: '1.7.25'],
+   SLF4J_SIMPLE: [group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'],
+   SLF4J_LOG4j: [group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'],
+   
+   COMMONS_IO: [group: 'commons-io', name: 'commons-io', version: '2.6'],
+   
+   
+   JUNIT: 'junit:junit:4.12'
+]
+
+subprojects {
+   apply plugin: 'java-library'
+   apply plugin: 'eclipse'
+   
+   repositories {
+      jcenter()
+   }            
+
+   afterEvaluate {
+      eclipse {
+         classpath {
+            downloadSources = true
+            downloadJavadoc = true
+         }
+      }
+   }
+}

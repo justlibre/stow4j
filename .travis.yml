@@ -1,0 +1,10 @@
+language: java
+install: true
+
+jdk:
+     - oraclejdk8
+
+before_script:
+     - cd com.justlibre.master
+script:
+     - ./gradlew build -s
