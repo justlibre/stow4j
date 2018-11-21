@@ -1,6 +1,7 @@
 package com.justlibre.stow4j;
 
 import java.io.Closeable;
+import java.net.URL;
 import java.util.List;
 
 /**
@@ -54,4 +55,10 @@ public interface Location extends Closeable {
 	 * @throws StowException if the cursor is not ok
 	 */
 	Pair<List<Container>, String> containers(String prefix, String cursor, int count) throws StowException;
+	
+	/**
+	 * ItemByURL gets an Item at this location with the
+	 * specified URL.
+	 */ 
+	Item itemByURL(URL url) throws StowException;
 }
