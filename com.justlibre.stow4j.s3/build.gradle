@@ -1,0 +1,15 @@
+project.ext {
+	artifactId = 'com.justlibre.stow4j-s3'
+}
+
+dependencies {
+   compile (
+      project(':com.justlibre.stow4j'),
+      
+      LIBS.SLF4J_API
+   )
+   
+   testCompile (
+      LIBS.JUNIT
+   )
+}

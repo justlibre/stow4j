@@ -1,14 +1,29 @@
+buildscript {
+  repositories {
+      mavenCentral()
+  }
+  dependencies {
+      classpath "io.spring.gradle:dependency-management-plugin:1.0.3.RELEASE"
+  }
+}
 
 plugins {
     // Apply the java-library plugin to add support for Java Library
     id 'java-library'
     id 'eclipse'
+    id 'io.spring.dependency-management'
 }
 
 project.ext {
    VERSION = '0.0.1-SNAPSHOT'
 
    LIBS = new HashMap()
+}
+
+dependencyManagement {
+  imports {
+      mavenBom 'software.amazon.awssdk:bom:2.0.0'
+  }
 }
 
 dependencies {
@@ -25,6 +40,8 @@ LIBS << [
    SLF4J_LOG4j: [group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'],
    
    COMMONS_IO: [group: 'commons-io', name: 'commons-io', version: '2.6'],
+   
+   AWS_SDK : 'software.amazon.awssdk:kinesis',
    
    
    JUNIT: 'junit:junit:4.12'
@@ -47,3 +64,4 @@ subprojects {
       }
    }
 }
+
